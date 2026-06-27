@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'https://recycle-s2ww.onrender.com',
+  baseURL: import.meta.env.VITE_API_URL || 'https://recycle-s2ww.onrender.com/api',
 });
 
 // Attach JWT token to every request if present
