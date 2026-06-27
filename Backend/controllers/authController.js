@@ -15,14 +15,6 @@ exports.register = async (req, res) => {
 
   const { name, email, password } = req.body;
 
-  // Enforce college email domain
-  const domain = process.env.COLLEGE_EMAIL_DOMAIN || 'college.edu.in';
-  if (!email.endsWith(`@${domain}`)) {
-    return res
-      .status(400)
-      .json({ message: `Only @${domain} emails are allowed` });
-  }
-
   const exists = await User.findOne({ email });
   if (exists) return res.status(400).json({ message: 'Email already registered' });
 
