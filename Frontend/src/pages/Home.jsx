@@ -43,7 +43,7 @@ export default function Home() {
         <div className="hero-inner">
           <h1>Find your campus ride</h1>
           <p>
-            All cycles are verified and managed by CampusCycle — one pickup point,
+            All cycles are verified and managed by TaskForce Team — one pickup point,
             one payment channel, zero hassle.
           </p>
 
