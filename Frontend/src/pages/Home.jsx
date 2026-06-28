@@ -60,18 +60,6 @@ export default function Home() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
             />
-            <select className="filter-sel" value={type} onChange={(e) => setType(e.target.value)}>
-              <option value="">All types</option>
-              <option value="mountain">Mountain</option>
-              <option value="road">Road</option>
-              <option value="hybrid">Hybrid</option>
-              <option value="gear">Geared</option>
-            </select>
-            <select className="filter-sel" value={status} onChange={(e) => setStatus(e.target.value)}>
-              <option value="">All</option>
-              <option value="available">Available</option>
-              <option value="sold">Sold</option>
-            </select>
           </div>
 
           <div className="stats-row">
