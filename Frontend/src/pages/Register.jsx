@@ -34,10 +34,10 @@ export default function Register() {
           <input placeholder="Your name" value={form.name} onChange={update('name')} required />
         </div>
         <div className="field">
-          <label>College email</label>
+          <label>Email</label>
           <input
             type="email"
-            placeholder="yourname@college.edu.in"
+            placeholder="Enter your email"
             value={form.email}
             onChange={update('email')}
             required
