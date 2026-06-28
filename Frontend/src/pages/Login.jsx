@@ -27,12 +27,12 @@ export default function Login() {
   return (
     <div className="auth-page">
       <form className="auth-card" onSubmit={handleSubmit}>
-        <h2>Sign in with college email</h2>
+        <h2>Sign in with your email</h2>
         <div className="field">
-          <label>College email</label>
+          <label>Email</label>
           <input
             type="email"
-            placeholder="yourname@college.edu.in"
+            placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
