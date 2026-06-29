@@ -51,7 +51,6 @@ export default function ListingDetail() {
 
       <div className="detail-info">
         <div className="info-chip"><span>{listing.plate}</span></div>
-        <div className="info-chip"><span>{listing.type}</span></div>
         <div className="info-chip"><span>{listing.condition}</span></div>
         <div className="info-chip"><span>{taskforce?.pickupShort}</span></div>
       </div>
