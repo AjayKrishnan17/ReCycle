@@ -46,7 +46,7 @@ export default function ListingDetail() {
         <div className="detail-plate">{listing.plate}</div>
       </div>
       <div className="detail-price">₹{listing.price.toLocaleString()}</div>
-      <div className="org-chip">Verified by CampusCycle</div>
+      <div className="org-chip">Verified by TaskForce Team</div>
       <p className="detail-desc">{listing.description}</p>
 
       <div className="detail-info">
