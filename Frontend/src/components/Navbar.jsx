@@ -9,7 +9,7 @@ export default function Navbar() {
     <nav className="navbar">
       <Link to="/" className="logo">
         <span className="logo-dot" />
-        CampusCycle
+        ReCycle
       </Link>
       <div className="nav-actions">
         {user ? (
