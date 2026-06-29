@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getListings, createListing, deleteListing } from '../api/listings';
 
-const emptyForm = { title: '', plate: '', price: '', type: 'hybrid', condition: '', description: '' };
+const emptyForm = { title: '', plate: '', price: '', condition: '', description: '' };
 
 export default function Admin() {
   const [listings, setListings] = useState([]);
@@ -63,15 +63,6 @@ export default function Admin() {
           </div>
         </div>
         <div className="form-row">
-          <div className="field">
-            <label>Type</label>
-            <select value={form.type} onChange={update('type')}>
-              <option value="hybrid">Hybrid</option>
-              <option value="mountain">Mountain</option>
-              <option value="road">Road</option>
-              <option value="gear">Geared</option>
-            </select>
-          </div>
           <div className="field">
             <label>Year / condition</label>
             <input value={form.condition} onChange={update('condition')} placeholder="e.g. 2021 · Good" />
