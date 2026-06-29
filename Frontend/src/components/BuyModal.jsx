@@ -15,7 +15,6 @@ export default function BuyModal({ listing, taskforce, onClose, onPurchased }) {
   const handleVerifyUTR = () => {
     if (!utrValid) return;
     setVerifying(true);
-    // Simulated client-side check; real verification happens server-side on submit
     setTimeout(() => {
       setVerifying(false);
       setStep(3);
@@ -174,6 +173,9 @@ function ReviewStep({ listing, taskforce }) {
       </div>
       <InfoRows rows={[
         ['Price', `₹${listing.price.toLocaleString()}`],
+        ['Listing Type', listing.listingType === 'rent'
+          ? `Rent · ${listing.rentDuration}`
+          : 'Purchase'],
         ['Condition', listing.condition],
         ['Payment to', taskforce.name],
       ]} />
@@ -279,6 +281,9 @@ function ConfirmStep({ listing, taskforce, method, utr, error }) {
       <InfoRows rows={[
         ['Cycle', listing.title],
         ['Plate', listing.plate],
+        ['Listing Type', listing.listingType === 'rent'
+          ? `Rent · ${listing.rentDuration}`
+          : 'Purchase'],
         ['Amount', `₹${listing.price.toLocaleString()}`],
         ['Paid to', taskforce.name],
         ['Method', isUpi ? `UPI · UTR ${utr}` : 'Cash at desk'],
