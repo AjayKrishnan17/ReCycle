@@ -15,7 +15,6 @@ export default function CycleCard({ listing }) {
         <div className="card-body">
           <div className="card-title">{listing.title}</div>
           <div className="card-meta">
-            <span>{listing.type}</span>
             <span>{listing.condition}</span>
           </div>
           <div className="card-footer">
