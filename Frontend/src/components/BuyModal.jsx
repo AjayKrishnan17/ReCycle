@@ -174,7 +174,6 @@ function ReviewStep({ listing, taskforce }) {
       </div>
       <InfoRows rows={[
         ['Price', `₹${listing.price.toLocaleString()}`],
-        ['Type', listing.type],
         ['Condition', listing.condition],
         ['Payment to', taskforce.name],
       ]} />
