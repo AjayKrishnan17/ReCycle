@@ -8,6 +8,7 @@ const authRoutes = require('./routes/auth');
 const listingRoutes = require('./routes/listings');
 const orderRoutes = require('./routes/orders');
 const configRoutes = require('./routes/config');
+const profileRoutes = require('./routes/profile');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/listings', listingRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/config', configRoutes);
+app.use('/api/profile', profileRoutes);
 
 // ── Health check ──
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
