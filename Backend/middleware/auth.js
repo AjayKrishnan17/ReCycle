@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-// Verify JWT and attach user to req
 const protect = async (req, res, next) => {
   const auth = req.headers.authorization;
   if (!auth || !auth.startsWith('Bearer ')) {
@@ -17,7 +16,6 @@ const protect = async (req, res, next) => {
   }
 };
 
-// Allow only admins
 const adminOnly = (req, res, next) => {
   if (req.user?.role !== 'admin') {
     return res.status(403).json({ message: 'Admin access required' });
@@ -25,11 +23,4 @@ const adminOnly = (req, res, next) => {
   next();
 };
 
-const requireVerifiedProfile = (req, res, next) => {
-  if (!req.user.profileComplete) {
-    return res.status(403).json({ message: 'Please complete your profile and verify your phone number first' });
-  }
-  next();
-};
-
-module.exports = { protect, adminOnly, requireVerifiedProfile };
+module.exports = { protect, adminOnly };
