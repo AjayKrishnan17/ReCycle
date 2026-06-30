@@ -23,11 +23,6 @@ export default function ListingDetail() {
       .finally(() => setLoading(false));
   }, [id]);
 
-  const handleBuyClick = () => {
-    if (!user) return navigate('/login');
-    setShowBuy(true);
-  };
-
   const handlePurchased = (confirmedOrder) => {
     setShowBuy(false);
     setOrder(confirmedOrder);
