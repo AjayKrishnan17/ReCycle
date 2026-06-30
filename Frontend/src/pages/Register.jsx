@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 export default function Register() {
   const { register } = useAuth();
   const navigate = useNavigate();
-  const [form, setForm] = useState({ name: '', email: '', password: '' });
+  const [form, setForm] = useState({ name: '', email: '', password: '', rollNumber: '', phone: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -16,8 +16,8 @@ export default function Register() {
     setError('');
     setLoading(true);
     try {
-      await register(form.name, form.email, form.password);
-      navigate('/complete-profile');
+      await register(form);
+      navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');
     } finally {
@@ -29,20 +29,39 @@ export default function Register() {
     <div className="auth-page">
       <form className="auth-card" onSubmit={handleSubmit}>
         <h2>Create your account</h2>
+
         <div className="field">
           <label>Full name</label>
           <input placeholder="Your name" value={form.name} onChange={update('name')} required />
         </div>
+
         <div className="field">
           <label>Email</label>
+          <input type="email" placeholder="you@example.com" value={form.email} onChange={update('email')} required />
+        </div>
+
+        <div className="field">
+          <label>Roll number</label>
           <input
-            type="email"
-            placeholder="Enter your email"
-            value={form.email}
-            onChange={update('email')}
+            placeholder="e.g. CS2024001"
+            value={form.rollNumber}
+            onChange={update('rollNumber')}
+            style={{ textTransform: 'uppercase' }}
             required
           />
         </div>
+
+        <div className="field">
+          <label>Mobile number</label>
+          <input
+            placeholder="10-digit number"
+            value={form.phone}
+            onChange={(e) => setForm({ ...form, phone: e.target.value.replace(/\D/g, '') })}
+            maxLength={10}
+            required
+          />
+        </div>
+
         <div className="field">
           <label>Password</label>
           <input
@@ -54,7 +73,7 @@ export default function Register() {
             required
           />
         </div>
-        <p className="auth-note">Only college domain emails are allowed.</p>
+
         {error && <div className="error-banner">{error}</div>}
         <button className="btn btn-primary" style={{ width: '100%' }} disabled={loading}>
           {loading ? 'Creating account…' : 'Sign up'}
