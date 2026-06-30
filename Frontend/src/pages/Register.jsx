@@ -17,7 +17,7 @@ export default function Register() {
     setLoading(true);
     try {
       await register(form.name, form.email, form.password);
-      navigate('/');
+      navigate('/complete-profile');
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');
     } finally {
