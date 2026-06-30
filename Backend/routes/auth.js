@@ -9,6 +9,8 @@ router.post('/register', [
   body('name').trim().notEmpty().withMessage('Name is required'),
   body('email').isEmail().withMessage('Valid email required'),
   body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
+  body('rollNumber').trim().notEmpty().withMessage('Roll number is required'),
+  body('phone').matches(/^\d{10}$/).withMessage('Enter a valid 10-digit phone number'),
 ], register);
 
 router.post('/login', login);
