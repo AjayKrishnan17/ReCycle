@@ -25,4 +25,11 @@ const adminOnly = (req, res, next) => {
   next();
 };
 
-module.exports = { protect, adminOnly };
+const requireVerifiedProfile = (req, res, next) => {
+  if (!req.user.profileComplete) {
+    return res.status(403).json({ message: 'Please complete your profile and verify your phone number first' });
+  }
+  next();
+};
+
+module.exports = { protect, adminOnly, requireVerifiedProfile };
