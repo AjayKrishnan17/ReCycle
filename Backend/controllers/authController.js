@@ -13,13 +13,23 @@ exports.register = async (req, res) => {
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
 
-  const { name, email, password } = req.body;
+  const { name, email, password, rollNumber, phone } = req.body;
 
-  const exists = await User.findOne({ email });
-  if (exists) return res.status(400).json({ message: 'Email already registered' });
+  const exists = await User.findOne({
+    $or: [{ email }, { rollNumber: rollNumber.toUpperCase() }, { phone }],
+  });
+  if (exists) return res.status(400).json({ message: 'Email, roll number, or phone already registered' });
 
-  const user = await User.create({ name, email, password });
-  res.status(201).json({ token: signToken(user._id), user: { id: user._id, name: user.name, email: user.email, role: user.role } });
+  const user = await User.create({
+    name, email, password,
+    rollNumber: rollNumber.toUpperCase(),
+    phone,
+  });
+
+  res.status(201).json({
+    token: signToken(user._id),
+    user: { id: user._id, name: user.name, email: user.email, role: user.role, rollNumber: user.rollNumber },
+  });
 };
 
 // POST /api/auth/login
@@ -32,7 +42,10 @@ exports.login = async (req, res) => {
   if (!user || !(await user.matchPassword(password)))
     return res.status(401).json({ message: 'Invalid credentials' });
 
-  res.json({ token: signToken(user._id), user: { id: user._id, name: user.name, email: user.email, role: user.role } });
+  res.json({
+    token: signToken(user._id),
+    user: { id: user._id, name: user.name, email: user.email, role: user.role, rollNumber: user.rollNumber },
+  });
 };
 
 // GET /api/auth/me
