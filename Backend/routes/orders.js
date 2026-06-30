@@ -1,10 +1,10 @@
 const express = require('express');
 const { createOrder, getMyOrders, getAllOrders } = require('../controllers/orderController');
-const { protect, adminOnly } = require('../middleware/auth');
+const { protect, adminOnly, requireVerifiedProfile } = require('../middleware/auth');
 
 const router = express.Router();
 
-router.post('/', protect, createOrder);
+router.post('/', protect, requireVerifiedProfile, createOrder);
 router.get('/mine', protect, getMyOrders);
 router.get('/', protect, adminOnly, getAllOrders);
 
