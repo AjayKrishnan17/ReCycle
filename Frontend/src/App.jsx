@@ -8,7 +8,6 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import MyOrders from './pages/MyOrders';
 import Admin from './pages/Admin';
-import CompleteProfile from './pages/CompleteProfile';
 import './index.css';
 
 export default function App() {
@@ -23,7 +22,6 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/my-orders" element={<ProtectedRoute><MyOrders /></ProtectedRoute>} />
           <Route path="/admin" element={<ProtectedRoute adminOnly><Admin /></ProtectedRoute>} />
-          <Route path="/complete-profile" element={<ProtectedRoute><CompleteProfile /></ProtectedRoute>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
