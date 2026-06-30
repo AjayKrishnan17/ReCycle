@@ -17,8 +17,6 @@ const userSchema = new mongoose.Schema(
      // Profile completed after signup
     rollNumber: { type: String, trim: true, uppercase: true },
     phone: { type: String, trim: true },
-    phoneVerified: { type: Boolean, default: false },
-    profileComplete: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
