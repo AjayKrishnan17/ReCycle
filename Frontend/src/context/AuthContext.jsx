@@ -28,13 +28,13 @@ export function AuthProvider({ children }) {
     return data.user;
   };
 
-  const register = async (name, email, password) => {
-    const data = await registerUser({ name, email, password });
-    localStorage.setItem('cc_token', data.token);
-    localStorage.setItem('cc_user', JSON.stringify(data.user));
-    setUser(data.user);
-    return data.user;
-  };
+  const register = async (formData) => {
+  const data = await registerUser(formData);
+  localStorage.setItem('cc_token', data.token);
+  localStorage.setItem('cc_user', JSON.stringify(data.user));
+  setUser(data.user);
+  return data.user;
+};
 
   const logout = () => {
     localStorage.removeItem('cc_token');
