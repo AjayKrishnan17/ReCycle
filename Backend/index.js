@@ -12,6 +12,25 @@ const configRoutes = require('./routes/config');
 
 const app = express();
 
+// --- Validate environment early for clearer deployment errors ---
+function checkRequiredEnv() {
+  const missing = [];
+  if (!process.env.MONGO_URI) missing.push('MONGO_URI');
+  if (!process.env.JWT_SECRET) missing.push('JWT_SECRET');
+  if (!process.env.CLIENT_URL) missing.push('CLIENT_URL');
+
+  if (missing.length) {
+    console.error('Missing required environment variables:', missing.join(', '));
+    console.error('Please set them in your hosting provider (Render, Heroku, etc.) and redeploy.');
+    process.exit(1);
+  }
+}
+
+// Only enforce in production/redeploy environments
+if (process.env.NODE_ENV === 'production') {
+  checkRequiredEnv();
+}
+
 // Optional DNS override for environments where SRV lookups are blocked by ISP/router DNS.
 if (process.env.DNS_SERVERS) {
   const dnsServers = process.env.DNS_SERVERS.split(',')
