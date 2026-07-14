@@ -23,4 +23,13 @@ const adminOnly = (req, res, next) => {
   next();
 };
 
-module.exports = { protect, adminOnly };
+// Ensure user has completed profile (roll number and phone)
+const requireVerifiedProfile = (req, res, next) => {
+  if (!req.user) return res.status(401).json({ message: 'Not authorised' });
+  if (!req.user.rollNumber || !req.user.phone) {
+    return res.status(400).json({ message: 'Complete profile (roll number and phone) before placing orders' });
+  }
+  next();
+};
+
+module.exports = { protect, adminOnly, requireVerifiedProfile };
