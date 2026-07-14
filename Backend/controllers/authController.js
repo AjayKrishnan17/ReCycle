@@ -15,14 +15,18 @@ exports.register = async (req, res) => {
 
   const { name, email, password, rollNumber, phone } = req.body;
 
+  // Check for existing user by email, roll number or phone
   const exists = await User.findOne({
-    $or: [{ email }, { rollNumber: rollNumber.toUpperCase() }, { phone }],
+    $or: [{ email }, { rollNumber: rollNumber?.toUpperCase() }, { phone }],
   });
-  if (exists) return res.status(400).json({ message: 'Email, roll number, or phone already registered' });
+  if (exists)
+    return res.status(400).json({ message: 'Email, roll number, or phone already registered' });
 
   const user = await User.create({
-    name, email, password,
-    rollNumber: rollNumber.toUpperCase(),
+    name,
+    email,
+    password,
+    rollNumber: rollNumber ? rollNumber.toUpperCase() : undefined,
     phone,
   });
 

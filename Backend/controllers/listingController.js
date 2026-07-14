@@ -25,11 +25,11 @@ exports.getListing = async (req, res) => {
 
 // POST /api/listings  (admin only)
 exports.createListing = async (req, res) => {
-  const { title, price, type, condition, description, plate } = req.body;
+  const { title, price, type, condition, description, plate, listingType } = req.body;
   const images = req.files?.map((f) => f.path) || [];
 
   const listing = await Listing.create({
-    title, price, type, condition, description,
+    title, price, type, condition, description, listingType,
     plate: plate || undefined, // auto-generated if blank
     images,
     addedBy: req.user._id,

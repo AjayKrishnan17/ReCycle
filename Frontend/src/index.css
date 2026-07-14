@@ -67,6 +67,8 @@ body { font-family: -apple-system, system-ui, sans-serif; background: var(--c-bg
 .badge-available { background: var(--c-accent-light); color: var(--c-accent-dark); }
 .badge-sold { background: #F1EFE8; color: #5F5E5A; }
 .card-buy-wrap { padding: 0 14px 12px; }
+.badge-rent { background: #FFF3CD; color: #856404; }
+.badge-purchase { background: var(--c-accent-light); color: var(--c-accent-dark); }
 
 /* Modal / overlay */
 .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 1rem; }

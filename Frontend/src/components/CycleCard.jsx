@@ -19,8 +19,8 @@ export default function CycleCard({ listing }) {
           </div>
           <div className="card-footer">
             <div className="card-price">₹{listing.price.toLocaleString()}</div>
-            <span className={`badge ${isSold ? 'badge-sold' : 'badge-available'}`}>
-              {isSold ? 'Sold' : 'Available'}
+            <span className={`badge ${listing.listingType === 'rent' ? 'badge-rent' : 'badge-purchase'}`}>
+  {listing.listingType === 'rent' ? 'Rent' : 'Purchase'}
             </span>
           </div>
         </div>

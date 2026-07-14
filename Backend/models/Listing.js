@@ -21,7 +21,14 @@ const listingSchema = new mongoose.Schema(
     },
     title: { type: String, required: true, trim: true },
     price: { type: Number, required: true, min: 0 },
-    
+    type: {
+      listingType: {
+        type: String,
+        enum: ['rent', 'purchase'],
+        default: 'purchase',
+        required: true,
+      },
+    },
     condition: { type: String, required: true, trim: true },
     description: { type: String, trim: true },
     images: [{ type: String }], // Cloudinary URLs
