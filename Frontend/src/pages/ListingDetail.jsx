@@ -29,6 +29,10 @@ export default function ListingDetail() {
     setListing((l) => ({ ...l, status: 'sold' }));
   };
 
+  const handleBuyClick = () => {
+    setShowBuy(true);
+  };
+
   if (loading) return <div className="page-loading">Loading…</div>;
   if (!listing) return <div className="empty-state">Listing not found.</div>;
 
