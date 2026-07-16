@@ -12,6 +12,11 @@ const configRoutes = require('./routes/config');
 
 const app = express();
 
+const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5174')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 // --- Validate environment early for clearer deployment errors ---
 function checkRequiredEnv() {
   const missing = [];
@@ -45,7 +50,18 @@ if (process.env.DNS_SERVERS) {
 
 // ── Middleware ──
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // ── Routes ──
